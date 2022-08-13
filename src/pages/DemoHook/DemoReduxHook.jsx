@@ -1,6 +1,10 @@
 // rfc
 import React, { useState } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
+import { fakebookAction } from '../../redux/action/FakeBookAction';
+// import { ADD_COMMENT } from '../../redux/type/FakeBookType';
+
+
 
 export default function DemoReduxHook() {
     /**
@@ -65,13 +69,9 @@ export default function DemoReduxHook() {
         //? Spread Operator
         //copy thuộc tính hoặc phần tử cũ và đồng thời có thể bổ sung thuộc tính hoặc phần tử mới
         //Nếu thuộc tính đã có trong đối tượng => gán đè giá trị mới của thuộc tính
-        let action = {
-            type: "ADD_COMMENT",
-            comment:{
-                ...userComment,
-                avatar:`https://i.pravatar.cc/?u=${userComment.name}`
-            }
-        }
+        
+        // Action Creator
+        let action = fakebookAction(userComment);
         dispatch(action);
     }
     return (

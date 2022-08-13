@@ -29,7 +29,17 @@ export default function Header() {
                         <div className="dropdown-menu">
                             <NavLink className="dropdown-item" to="/usestate">UseState</NavLink>
                             <NavLink className="dropdown-item" to="/reduxhook">ReduxHook</NavLink>
-                          
+                            <NavLink className="dropdown-item" to="/useeffect">UseEffect</NavLink>
+                        </div>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <NavLink className="nav-link dropdown-toggle" to="/" role="button" data-toggle="dropdown" aria-expanded="false">
+                            DemoAPI
+                        </NavLink>
+                        <div className="dropdown-menu">
+                            <NavLink className="dropdown-item" to="/axiosrcc">AxiosRcc</NavLink>
+                            <NavLink className="dropdown-item" to="/axiosrfc">AxiosRfc</NavLink>
+                           
                         </div>
                     </li>
                    
