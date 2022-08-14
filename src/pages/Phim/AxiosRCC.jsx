@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { TOKEN_CYBER } from '../../util/setting';
 
 export default class AxiosRCC extends Component {
 
     //Khi lấy data từ API => render lại UI để hiển thi kết quả lên UI
     //=> lưu data vào state (setState)
 
-    state = {
-        mangPhim: []
+    constructor(props){
+        super(props)
+        this.state = {
+            mangPhim: []
+        }
     }
+
+    
     //Tạo hàm call API
     callAPI = () => {
         let promise = axios({
             method: 'get',
             url: 'https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01',
             headers: {
-                "TokenCybersoft": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCDEkMOgIE7hurVuZyAwMyIsIkhldEhhblN0cmluZyI6IjIwLzAxLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTY3NDE3MjgwMDAwMCIsIm5iZiI6MTY0NTgwODQwMCwiZXhwIjoxNjc0MzIwNDAwfQ.8_aCoaa6rU0qnQpITJH8MZSFEBfvbj11eFJWuFsTYL8"
+                "TokenCybersoft":TOKEN_CYBER 
             }
         });
 
@@ -49,8 +55,11 @@ export default class AxiosRCC extends Component {
     }
 
 
+    //Khi load trang cần load sẵn danh sách phim
+    //=> gọi hàm callAPI() khi load trang
 
     render() {
+        // {this.callAPI()}
         return (
             <div className='container'>
                 <button onClick={this.callAPI} className='btn btn-danger'>Call API</button>
@@ -60,4 +69,12 @@ export default class AxiosRCC extends Component {
             </div>
         )
     }
+
+
+    //Chỉ chạy 1 lần khi mới load ứng dụng
+    // nếu state thay đổi thì sẽ không chạy và không bị call API liên tục
+    componentDidMount(){
+        this.callAPI();
+    }
+
 }

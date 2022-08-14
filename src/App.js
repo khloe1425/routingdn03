@@ -12,6 +12,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DemoUseEffect from './pages/DemoHook/DemoUseEffect';
 import AxiosRCC from './pages/Phim/AxiosRCC';
 import AxiosRFC from './pages/Phim/AxiosRFC';
+import AxiosMiddleWare from './pages/Phim/AxiosMiddleWare';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/useeffect" component={DemoUseEffect} />
         <Route exact path="/axiosrcc" component={AxiosRCC} />
         <Route exact path="/axiosrfc" component={AxiosRFC} />
+        <Route exact path="/axiosmiddleware" component={AxiosMiddleWare} />
         
 
         <Route exact path="/" component={Home} />
