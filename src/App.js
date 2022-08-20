@@ -13,26 +13,65 @@ import DemoUseEffect from './pages/DemoHook/DemoUseEffect';
 import AxiosRCC from './pages/Phim/AxiosRCC';
 import AxiosRFC from './pages/Phim/AxiosRFC';
 import AxiosMiddleWare from './pages/Phim/AxiosMiddleWare';
+import { HomeTemplate } from './templates/HomeTemplate';
+import { Fragment } from "react";
+import { UserTemplate } from './templates/UserTemplate';
+import AndtDemo from './pages/Admin/AndtDemo';
+import { AdminTemplate } from './templates/AdminTemplate';
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      {/* Sẽ xuất hiện ở tất cả các trang */}
+      {/* <Header /> */}
       <Switch>
-       
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/contact" component={Contact} />
+
+        {/* propsRoute: history, match, back... */}
+        {/* <Route exact path="/home" render={(propsRoute) => {
+          return <div>
+            <Header />
+            <Home {...propsRoute} />
+          </div>
+        }} />
+        <Route exact path="/contact" render={(propsRoute) => {
+          return <div>     
+            <Header />
+            <Contact {...propsRoute} />
+          </div>
+        }} /> */}
+        <HomeTemplate path="/home" component={Home}  />
+        <HomeTemplate path="/contact" component={Contact}  />
+
+        <Route exact path="/" render={(propsRoute) => {
+          return <Fragment>
+            {/* Header sẽ xuất hiện theo trang được quy định */}
+            <Header />
+            <Home {...propsRoute} />
+          </Fragment>
+        }} />
+        {/* <Route exact path="/home" component={Home} /> */}
+        {/* <Route exact path="/contact" component={Contact} /> */}
+        {/* <Route exact path="/" component={Home} /> */}
+
+
+        <UserTemplate path="/login" component={Login}/>
+        <UserTemplate path="/register" component={Register}/>
+
+        <AdminTemplate path="/admin/andtdemo" component={AndtDemo} />
+
+
+
+
+
         <Route exact path="/usestate" component={DemoUseState} />
         <Route exact path="/reduxhook" component={DemoReduxHook} />
         <Route exact path="/useeffect" component={DemoUseEffect} />
         <Route exact path="/axiosrcc" component={AxiosRCC} />
         <Route exact path="/axiosrfc" component={AxiosRFC} />
         <Route exact path="/axiosmiddleware" component={AxiosMiddleWare} />
-        
 
-        <Route exact path="/" component={Home} />
+
+
       </Switch>
     </BrowserRouter>
   );
