@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 
 import { FakeBookReducer } from "./reducers/FakeBookReducer";
 import { PhimReducer } from "./reducers/PhimReducer";
+import { QLNDReducer } from "./reducers/QLNDReducer";
 
 const rootReducers = combineReducers({
     //khai báo các reducer
@@ -12,6 +13,7 @@ const rootReducers = combineReducers({
     // FakeBookReducer: FakeBookReducer,
     FakeBookReducer,
     PhimReducer,
+    QLNDReducer,
 });
 
 export const store = createStore(rootReducers,applyMiddleware(thunk));

@@ -1,7 +1,24 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 export default function Header() {
+
+    let {userLogin} =  useSelector(state=> state.QLNDReducer)
+
+    let renderLogin = () => {
+
+        if(userLogin !== null){
+            //đã đăng nhập
+            return <div>
+                Hello {userLogin.taiKhoan}
+            </div>
+        }else{
+            return <button>Đăng Nhập</button>
+        }
+
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <NavLink className="navbar-brand" to="/">Navbar</NavLink>
@@ -46,6 +63,7 @@ export default function Header() {
                 </ul>
                
             </div>
+            {renderLogin()}
         </nav>
 
     )

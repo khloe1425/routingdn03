@@ -8,7 +8,7 @@ import Register from './pages/Register/Register';
 import DemoUseState from './pages/DemoHook/DemoUseState';
 import DemoReduxHook from './pages/DemoHook/DemoReduxHook';
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 import DemoUseEffect from './pages/DemoHook/DemoUseEffect';
 import AxiosRCC from './pages/Phim/AxiosRCC';
 import AxiosRFC from './pages/Phim/AxiosRFC';
@@ -18,10 +18,15 @@ import { Fragment } from "react";
 import { UserTemplate } from './templates/UserTemplate';
 import AndtDemo from './pages/Admin/AndtDemo';
 import { AdminTemplate } from './templates/AdminTemplate';
+import { createBrowserHistory } from 'history';
+
+//giúp các hàm không phải RFC dùng được history
+export const history = createBrowserHistory();
 
 function App() {
   return (
-    <BrowserRouter>
+    //truyền history vào props của các RFC
+    <Router history={history}>
       {/* Sẽ xuất hiện ở tất cả các trang */}
       {/* <Header /> */}
       <Switch>
@@ -59,10 +64,6 @@ function App() {
 
         <AdminTemplate path="/admin/andtdemo" component={AndtDemo} />
 
-
-
-
-
         <Route exact path="/usestate" component={DemoUseState} />
         <Route exact path="/reduxhook" component={DemoReduxHook} />
         <Route exact path="/useeffect" component={DemoUseEffect} />
@@ -73,7 +74,7 @@ function App() {
 
 
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 
